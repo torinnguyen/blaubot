@@ -16,7 +16,7 @@ Fork from original Blaubot 2.0.0-alpha.6 (Java) library to fix a few crashes
 
 ## Usage:
 * Add compile JAR file to your project's *libs* folder
-• Add following dependencies to your project's *build.gradle*
+* Add following dependencies to your project's *build.gradle*
 ```
 compile 'com.google.code.gson:gson:2.5'
 compile 'javax.jmdns:jmdns:3.4.1'
