@@ -1,11 +1,12 @@
 # blaubot
 Fork from original Blaubot 2.0.0-alpha.6 (Java) library to fix a few crashes. See commit logs for the fixes.
 
-## Initial commit:
-* Download JAR from [here](https://bintray.com/artifact/download/hgross/maven/eu/hgross/blaubot-android/2.0.0-alpha.6/blaubot-android-2.0.0-alpha.6-sources.jar)
-* Rename to .zip & extract its content
+## Where does this come from?
+* The latest source code on https://github.com/Blaubot/Blaubot is labelled as 2.0.0-alpha.2, while the latest Maven artifacts is labelled 2.0.0-alpha.6. So I decided to start with source codes obtained from Maven artifacts instead.
+* I downloaded [blaubot-android-2.0.0-alpha.6-sources.jar](https://bintray.com/artifact/download/hgross/maven/eu/hgross/blaubot-android/2.0.0-alpha.6/blaubot-android-2.0.0-alpha.6-sources.jar) from *bintray.com*
+* I renamed to .zip & extract its content to get .java files
 
-## Compile:
+## How to compile:
 * You need JDK >= 1.7 to compile this library.
 * Download JDK and configure JDK path
 ![JDK Path](https://raw.githubusercontent.com/torinnguyen/blaubot/master/docs/jdk_path.png)
