@@ -441,8 +441,8 @@ public class BlaubotMessage {
         // assert a compatible message schema
         byte messageSchemaVersion = headerByteBuffer.get();
         if (messageSchemaVersion != BlaubotConstants.MESSAGE_SCHEMA_VERSION) {
-            // TODO: maybe close connection, see TODO at methods begin
-            throw new RuntimeException("Incompatible Blaubot message schema version: " + messageSchemaVersion);
+            //throw new RuntimeException("Incompatible Blaubot message schema version: " + messageSchemaVersion);
+            return null;
         }
 
         // pre-create the MessageType to determine, how much header length is left to be read
