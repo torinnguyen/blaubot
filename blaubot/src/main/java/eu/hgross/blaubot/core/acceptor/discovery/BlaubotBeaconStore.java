@@ -49,8 +49,16 @@ public class BlaubotBeaconStore implements IBlaubotBeaconStore, IBlaubotDiscover
     @Override
     public void putDiscoveryEvent(BeaconMessage theirBeaconMessage, IBlaubotDevice remoteDevice) {
         // create event and put it to the store (no populating!)
+        if (theirBeaconMessage == null)
+            return;
+        if (remoteDevice == null)
+            return;
         final eu.hgross.blaubot.core.State theirState = theirBeaconMessage.getCurrentState();
+        if (theirState == null)
+            return;
         AbstractBlaubotDeviceDiscoveryEvent discoveryEvent = theirState.createDiscoveryEventForDevice(remoteDevice, theirBeaconMessage.getOwnConnectionMetaDataList());
+        if (discoveryEvent == null)
+            return;
         onDeviceDiscoveryEvent(discoveryEvent);
     }
 
