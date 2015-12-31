@@ -17,6 +17,8 @@ public class AdminMessageFactory {
      * @return
      */
     public static AbstractAdminMessage createAdminMessageFromRawMessage(BlaubotMessage rawMessage) {
+        if (rawMessage == null)
+            return null;
         byte classifier = rawMessage.getPayload()[0];
         if (classifier == AbstractAdminMessage.CLASSIFIER_CENSUS_MESSAGE) {
             return new CensusMessage(rawMessage);

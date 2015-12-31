@@ -641,8 +641,10 @@ public class BlaubotMessage {
         System.out.println("msg == msg2: " + msg.equals(msg2));
 
         BlaubotMessage msg3 = fromByteArray(msg2.toBytes());
-        System.out.println("msg2, msg3: " + msg2 + ", " + msg3);
-        System.out.println("msg2 == msg3: " + msg2.equals(msg3));
+        if (msg3 != null) {
+            System.out.println("msg2, msg3: " + msg2 + ", " + msg3);
+            System.out.println("msg2 == msg3: " + msg2.equals(msg3));
+        }
 
 
         int x = 33000;
