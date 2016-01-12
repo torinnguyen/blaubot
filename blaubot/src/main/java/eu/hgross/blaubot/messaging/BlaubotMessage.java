@@ -11,7 +11,6 @@ import java.util.List;
 
 import eu.hgross.blaubot.core.BlaubotConstants;
 import eu.hgross.blaubot.core.IBlaubotConnection;
-import eu.hgross.blaubot.util.Log;
 
 /**
  * The message object that is sent through connections
@@ -588,8 +587,8 @@ public class BlaubotMessage {
         // assert a compatible message schema
         byte messageSchemaVersion = headerByteBuffer.get();
         if (messageSchemaVersion != BlaubotConstants.MESSAGE_SCHEMA_VERSION) {
-            // TODO: maybe close connection
-            throw new RuntimeException("Incompatible Blaubot message schema version: " + messageSchemaVersion);
+            //throw new RuntimeException("Incompatible Blaubot message schema version: " + messageSchemaVersion);
+            return null;
         }
 
         // pre-create the MessageType to determine, how much header length is left to be read
