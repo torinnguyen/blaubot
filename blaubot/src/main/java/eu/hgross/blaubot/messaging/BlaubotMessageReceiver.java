@@ -1,6 +1,5 @@
 package eu.hgross.blaubot.messaging;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,6 +61,7 @@ public class BlaubotMessageReceiver {
 
     /**
      * The blaubot connection used to receive messages.
+     *
      * @return the connection object used to receive messages
      */
     public IBlaubotConnection getBlaubotConnection() {
@@ -111,6 +111,7 @@ public class BlaubotMessageReceiver {
             receivedLastChunkMapping.clear();
         }
     }
+
     private Object deactivateLock = new Object();
 
 
@@ -219,11 +220,10 @@ public class BlaubotMessageReceiver {
 
         private IActionListener finishedListener;
         private boolean finished = false;
-        private Object finishedMonitor = new Object();
+        private final Object finishedMonitor = new Object();
 
         @Override
         public void run() {
-            // TODO handle exceptions: they need to bubble up to the top level to eliminate this receiver. Maybe we just close the connection due to the obviously corrupted messaging
             synchronized (receiverMonitor) {
                 if (Log.logDebugMessages()) {
                     Log.d(LOG_TAG, "Started receiver for connection: " + blaubotConnection);
@@ -257,18 +257,17 @@ public class BlaubotMessageReceiver {
                             notifyListeners(message);
                         }
 
-
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         if (Log.logDebugMessages()) {
-                            Log.d(LOG_TAG, "IOException ("+e.getMessage()+") while reading from connection: " + blaubotConnection);
+                            Log.d(LOG_TAG, "IOException (" + e.getMessage() + ") while reading from connection: " + blaubotConnection);
                         }
                         try {
                             Thread.sleep(SLEEP_TIME_ON_IO_FAILURE);
-                        } catch (InterruptedException e1) {
-                            break; // got interupted - RETREAT!
+                        } catch (Exception ignored) {
                         }
                     }
                 }
+
                 synchronized (finishedMonitor) {
                     finished = true;
                     if (Log.logDebugMessages()) {
