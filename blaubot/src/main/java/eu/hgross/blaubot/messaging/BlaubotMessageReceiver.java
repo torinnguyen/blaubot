@@ -240,6 +240,8 @@ public class BlaubotMessageReceiver {
                         Random r = new Random();
                         int i = r.nextInt();
                         BlaubotMessage message = BlaubotMessage.readFromBlaubotConnection(blaubotConnection, headerByteBuffer, headerBuffer);
+                        if (message == null)
+                            continue;
 
                         // maintain stats
                         receivedMessages += 1;
