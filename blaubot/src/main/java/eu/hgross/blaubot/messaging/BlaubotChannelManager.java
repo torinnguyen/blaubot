@@ -720,15 +720,18 @@ public class BlaubotChannelManager {
      * @return the number of message senders that got our message (sendMessage() calls).
      */
     public int publishChannelMessage(BlaubotMessage channelMessage) {
-        if (isMaster) {
-            // we send it to our own connection with the firstHop bit set
+        if (!isMaster)
+            return publishToAllConnections(channelMessage);
+
+        // we send it to our own connection with the firstHop bit set
+        try {
             channelMessage.getMessageType().setIsFirstHop(true);
             ownMessageManager.getMessageSender().sendMessage(channelMessage);
-            return 1;
-        } else {
-            // we send it to the master
-            return publishToAllConnections(channelMessage);
         }
+        catch (Exception ignored) {
+            
+        }
+        return 1;
     }
 
     /**
